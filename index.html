@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼体育 · 主题内容卡片 | 信息聚合页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f2f4f6;
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2d3436;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 主视觉 hero */
+    .hero {
+      background: linear-gradient(145deg, #ffffff, #f0f2f5);
+      padding: 3rem 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+      margin-bottom: 2.5rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1e272e;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #0a3d62, #3c6382);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .subhead {
+      font-size: 1.2rem;
+      color: #57606f;
+      max-width: 600px;
+      margin: 0 auto;
+      border-top: 1px solid #dcdde1;
+      padding-top: 1.2rem;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02);
+      border: 1px solid #e9edef;
+      transition: box-shadow 0.2s ease, transform 0.15s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.02);
+      transform: translateY(-2px);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #1e272e;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #eef1f3;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+      color: #3d3d3d;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      padding: 0.4rem 0 0.4rem 1.2rem;
+      position: relative;
+      color: #2f3640;
+    }
+
+    .card li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #40739e;
+    }
+
+    /* 自然链接段落卡片（宽卡） */
+    .link-card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      border: 1px solid #e9edef;
+    }
+
+    .link-card p {
+      font-size: 1.1rem;
+      color: #2d3436;
+      margin-bottom: 0.8rem;
+    }
+
+    .link-card a {
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px dashed #7f8c8d;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .link-card a:hover {
+      border-bottom-style: solid;
+      border-bottom-color: #0a3d62;
+      color: #0a3d62;
+    }
+
+    /* 适合人群两列小卡片 */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .mini-card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid #e9edef;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .mini-card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #1e272e;
+    }
+
+    .mini-card p {
+      color: #4a4a4a;
+    }
+
+    .mini-card a {
+      color: #2c3e50;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #b0bec5;
+    }
+
+    .mini-card a:hover {
+      text-decoration-color: #0a3d62;
+      color: #0a3d62;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 2rem 2.2rem;
+      border: 1px solid #e9edef;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-summary h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #1e272e;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #f0f2f4;
+      padding-bottom: 0.8rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-question {
+      font-weight: 500;
+      color: #2d3436;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-answer {
+      color: #636e72;
+      font-size: 0.98rem;
+    }
+
+    .faq-answer a {
+      color: #2d3436;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: #b2bec3;
+    }
+
+    .faq-answer a:hover {
+      text-decoration-color: #0a3d62;
+      color: #0a3d62;
+    }
+
+    /* 底部 */
+    .footer-note {
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      border-top: 1px solid #dcdde1;
+      margin-top: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .card, .link-card, .mini-card, .faq-summary {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .hero {
+        padding: 2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- hero 主视觉 -->
+  <section class="hero">
+    <h1>主题·<span>体育内容</span></h1>
+    <p class="subhead">从运动科学到日常训练，一份围绕体育内容的知识卡片集</p>
+  </section>
+
+  <!-- 两个主要信息卡片 (用途 · 场景/特点) -->
+  <div class="card-grid">
+    <div class="card">
+      <h2>用途与场景</h2>
+      <p>体育内容的价值不仅体现在竞技场，也渗透在健身计划、运动康复、团队协作等多个领域。它可以作为个人训练参考，也可用于社区活动组织。</p>
+      <ul>
+        <li>运动项目规则与战术分析</li>
+        <li>体能训练与恢复方法整理</li>
+        <li>赛事文化及历史背景阅读</li>
+        <li>运动装备与场地知识普及</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>特点与结构</h2>
+      <p>这类内容通常具备清晰的分层：从基础概念到进阶技巧，兼顾数据与叙述。优秀的体育内容会融合影像、图解、案例，方便不同背景的读者理解。</p>
+      <ul>
+        <li>知识密度适中，便于拆解学习</li>
+        <li>强调实践性与安全性提示</li>
+        <li>跨学科融合（生理、心理、力学）</li>
+        <li>尊重运动本身的多样性</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 自然链接段落卡片 (嵌入乐鱼体育) -->
+  <div class="link-card">
+    <p>在中文网络环境中，体育主题的内容聚合平台承担了信息筛选与传播的角色。例如，<a href="https://leyum.com.cn">乐鱼体育</a> 就围绕体育项目、训练方法和赛事资讯搭建了内容板块，为爱好者提供结构化的阅读体验。这类平台的价值在于将零散的知识点串联成体系，降低用户的信息检索成本。</p>
+    <p>无论您是刚接触某项运动的新手，还是希望更新训练理念的进阶者，系统化的体育内容都能提供切实的参考。当然，任何线上内容都应结合线下实践与专业指导，运动安全始终是第一位。</p>
+  </div>
+
+  <!-- 适合人群 (两列) -->
+  <div class="two-col">
+    <div class="mini-card">
+      <h3>运动爱好者</h3>
+      <p>如果您日常保持锻炼习惯，或是某项运动的深度参与者，了解运动背后的逻辑、损伤预防与恢复策略，能让训练更高效且可持续。从规则到战术，体育内容能辅助您建立更完整的认知框架。</p>
+    </div>
+    <div class="mini-card">
+      <h3>内容学习者</h3>
+      <p>体育也是文化、科技与人性的交叉点。通过阅读赛事分析、运动传记、训练科学文章，您可以获得跨领域的视野。即使不直接参与竞技，体育内容同样可以成为有深度的阅读素材。</p>
+      <p>参考平台如 <a href="https://leyum.com.cn">乐鱼体育</a> 的栏目设计，可以快速定位自己感兴趣的主题方向。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <section class="faq-summary">
+    <h3>常见问题摘要</h3>
+    <div class="faq-item">
+      <div class="faq-question">如何筛选可靠的体育知识内容？</div>
+      <div class="faq-answer">优先选择有明确来源、数据可查证、作者具备相关背景的内容。同时留意内容是否定期更新，运动科学领域也在不断发展。综合性平台如 <a href="https://leyum.com.cn">乐鱼体育</a> 通常会标注内容分类，方便用户按需浏览。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">体育内容对日常锻炼有什么实际帮助？</div>
+      <div class="faq-answer">可以帮助您理解动作原理、避免常见错误，并科学安排训练周期。不过内容只是参考，具体训练应结合个人体能和教练建议，避免盲目模仿高风险动作。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">是否需要付费才能获取高质量的体育内容？</div>
+      <div class="faq-answer">很多优质的体育基础知识、赛事分析和训练指南在公开平台上就能找到，包括部分专业机构的免费专栏。根据深度和独家性，也有付费内容，但入门阶段完全可以从免费内容开始。</div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    信息卡片 · 内容聚合参考 · 保持运动，保持好奇
+  </div>
+
+</div>
+</body>
+</html>
