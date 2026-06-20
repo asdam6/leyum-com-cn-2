@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐彩 · 产品说明</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #faf9f7;
+            color: #2c2b28;
+            font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 680px;
+            width: 100%;
+        }
+
+        /* 轻柔的标题 */
+        h1 {
+            font-weight: 350;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            margin-bottom: 1.6rem;
+            border-bottom: 1px solid #e0ddd8;
+            padding-bottom: 1.2rem;
+            color: #1f1d1a;
+        }
+
+        h2 {
+            font-weight: 380;
+            font-size: 1.4rem;
+            margin-top: 2.8rem;
+            margin-bottom: 0.6rem;
+            color: #3a3732;
+        }
+
+        h3 {
+            font-weight: 380;
+            font-size: 1.1rem;
+            margin-top: 1.8rem;
+            margin-bottom: 0.3rem;
+            color: #4b4741;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        /* 引用式摘要 */
+        .summary {
+            background: #f4f1ec;
+            padding: 1.8rem 2rem;
+            border-radius: 2px;
+            margin: 2rem 0 1.5rem;
+            font-style: normal;
+            border-left: 4px solid #b7a99a;
+            color: #3b3732;
+        }
+
+        .summary p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 亮点卡片组 */
+        .highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.8rem 0 0.8rem;
+        }
+
+        .highlight-item {
+            background: #ffffff;
+            padding: 1.2rem 1.6rem;
+            border: 1px solid #e6e1da;
+            border-radius: 1px;
+            transition: box-shadow 0.15s ease;
+        }
+
+        .highlight-item strong {
+            display: block;
+            font-weight: 500;
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+            color: #2f2b26;
+        }
+
+        .highlight-item em {
+            font-style: italic;
+            color: #6f675e;
+        }
+
+        .highlight-item:hover {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        /* 使用建议——简约列表 */
+        .suggest-list {
+            list-style: none;
+            margin: 1rem 0 2rem;
+        }
+
+        .suggest-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #e2ddd6;
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .suggest-list li::before {
+            content: "·";
+            color: #988e82;
+            font-weight: bold;
+            display: inline-block;
+            width: 1rem;
+        }
+
+        /* 访问说明 / 提示块 */
+        .notice {
+            background: #f4f1ec;
+            padding: 1.6rem 2rem;
+            margin: 2.8rem 0 1.8rem;
+            border-radius: 1px;
+            font-size: 0.95rem;
+            color: #3f3b35;
+        }
+
+        .notice a {
+            color: #3d352c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #c6b9aa;
+            font-weight: 400;
+        }
+
+        .notice a:hover {
+            color: #1f1a14;
+            text-decoration-color: #8c7c69;
+        }
+
+        /* FAQ 摘要（极简） */
+        .faq-mini {
+            margin: 2.4rem 0 1rem;
+            padding: 0;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            border: none;
+            padding: 0.3rem 0;
+        }
+
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 380;
+            color: #3f3a34;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::before {
+            content: "↪";
+            margin-right: 0.6rem;
+            color: #a99b8b;
+            font-size: 0.9rem;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: "↘";
+        }
+
+        .faq-mini .answer {
+            padding: 0.6rem 0 0.2rem 1.6rem;
+            font-size: 0.95rem;
+            color: #4d4841;
+            border-left: 1px solid #dbd3c9;
+            margin-left: 0.3rem;
+        }
+
+        /* 尾部 */
+        .footer-note {
+            margin-top: 4rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e3ded7;
+            font-size: 0.85rem;
+            color: #7d7469;
+            text-align: left;
+        }
+
+        .footer-note a {
+            color: #5f5549;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbc0b2;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 1px solid #7f6f5c;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            body { padding: 1.2rem 1rem 3rem; }
+            h1 { font-size: 1.8rem; }
+            .summary { padding: 1.2rem 1.2rem; }
+            .highlight-item { padding: 1rem 1.2rem; }
+            .notice { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <h1>乐彩 · 一则产品说明</h1>
+
+    <div class="summary">
+        <p>在信息流动越来越快的当下，一个安静的入口反而显得可贵。<a href="https://main-lecai.com">乐彩</a> 不刻意追逐热点，也不堆砌功能——它只做一件事：让关注彩票数据与信息的人，有一个稳定、干净、可以反复回来的地方。</p>
+        <p>这篇页面不是广告，更像一份简短的说明书。你可以从头读到尾，也可以挑自己感兴趣的部分看。</p>
+    </div>
+
+    <h2>几个值得了解的亮点</h2>
+    <div class="highlights">
+        <div class="highlight-item">
+            <strong>信息结构偏向克制</strong>
+            没有弹窗、浮动广告或自动播放的内容。页面以文字和数据为主体，视觉上尽量降低干扰，让阅读回归阅读本身。
+        </div>
+        <div class="highlight-item">
+            <strong>更新节奏稳定</strong>
+            内容维护以“可预期”为原则，不会突然改版或更换入口路径。如果你需要定期参考某个数据方向，<em>乐彩</em> 的持续性是一个可考虑的信任基础。
+        </div>
+        <div class="highlight-item">
+            <strong>入口简洁，没有多余跳转</strong>
+            从首页到达信息页面的层级很浅，不需要经过多层引导。对于熟悉彩票信息浏览习惯的用户来说，这种直达感能节省一些注意力。
+        </div>
+    </div>
+
+    <h2>一些使用建议</h2>
+    <ul class="suggest-list">
+        <li>如果你需要快速浏览当前分类下的数据概况，可以直接从导航进入对应板块——页面标题和摘要已经概括了主要内容。</li>
+        <li>对于希望自行对比的用户，建议使用浏览器自带的查找功能（Ctrl+F）定位具体数字或术语，页面结构对关键字搜索友好。</li>
+        <li>内容会按固定周期刷新，不必每天反复查看；设置一个书签，在需要的时候回来即可。</li>
+        <li>如果你对某个数据的来源或统计口径有疑问，页面底部通常会附一段简短备注，可以作为参考。</li>
+    </ul>
+
+    <h2>访问与可信度说明</h2>
+    <div class="notice">
+        <p><a href="https://main-lecai.com">乐彩</a> 本身是一个以信息展示为主的网站，不涉及购彩、充值或交易引导。页面所呈现的数据均来自公开可查的渠道，并保留了必要的出处说明。</p>
+        <p>由于彩票相关信息的敏感性，任何第三方平台都无法保证绝对无延迟——但就目前而言，这个站点的更新一致性在同类中表现稳定。如果你需要将其作为参考源之一，建议交叉对比 1–2 个渠道再做判断。</p>
+        <p>最后补充一点：请始终将彩票视为娱乐活动，理性参与。这个页面不会鼓励任何形式的过度投入，只是尽力把信息摆清楚。</p>
+    </div>
+
+    <h2>常见疑问摘要</h2>
+    <div class="faq-mini">
+        <details>
+            <summary>数据多久更新一次？</summary>
+            <div class="answer">不同板块略有差异，核心开奖信息通常在官方公布后 10–30 分钟内完成同步。趋势类图表则按日或周刷新，具体节奏在每个页面标题下方有提示。</div>
+        </details>
+        <details>
+            <summary>需要注册或登录吗？</summary>
+            <div class="answer">不需要。绝大多数内容对访客完全开放，没有任何形式的用户系统或权限限制——这也是页面设计之初就确定的规则。</div>
+        </details>
+        <details>
+            <summary>移动端浏览体验如何？</summary>
+            <div class="answer">采用响应式布局，手机和窄屏设备会自动适配为单栏排版，字体大小和间距也会对应调整。在 320px 宽度以上的设备上都能正常阅读。</div>
+        </details>
+    </div>
+
+    <div class="footer-note">
+        <p>本文档基于网站当前版本编写，内容仅供参考。如需获取最新信息，可直接访问 <a href="https://main-lecai.com">乐彩</a>。页面结构可能会根据维护需要微调，但克制与稳定的方向不会改变。</p>
+    </div>
+
+</div>
+</body>
+</html>
