@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>857直播 · 简明使用指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f1f3f6;
+            color: #1e2027;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Hero区简洁开场 */
+        .hero {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.8rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2e6ed;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #101214;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .subhead {
+            font-size: 1.05rem;
+            color: #4f566b;
+            max-width: 560px;
+            margin: 0 auto;
+            border-top: 1px solid #e8ecf2;
+            padding-top: 1.2rem;
+        }
+
+        /* 卡片通用结构 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.8rem 1.8rem 2rem 1.8rem;
+            border: 1px solid #e2e7ef;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: #1b1e26;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h3 span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #8c9bb5;
+            border-radius: 12px;
+            margin-right: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #343a47;
+            margin-bottom: 0.6rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+            color: #343a47;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #7d8aa3;
+            font-weight: 700;
+        }
+
+        /* 提示栏 – 访问说明区域 */
+        .notice-panel {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e2e7ef;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .notice-panel h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1e2027;
+            margin-bottom: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .notice-panel h2:before {
+            content: "⊡";
+            font-size: 1.3rem;
+            margin-right: 10px;
+            color: #6d7b96;
+        }
+
+        .notice-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem 2.5rem;
+        }
+
+        .notice-item {
+            flex: 1 1 200px;
+        }
+
+        .notice-item .label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #50607a;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .notice-item .value {
+            font-size: 0.96rem;
+            color: #2d3341;
+        }
+
+        .highlight-link {
+            font-weight: 500;
+            color: #1e3a6d;
+            text-decoration: none;
+            border-bottom: 1px solid #bcc9dd;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .highlight-link:hover {
+            border-bottom-color: #1e3a6d;
+            color: #0b1f3d;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e2e7ef;
+            padding: 1.8rem 2.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .faq-mini h2 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #1b1e26;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #edf0f5;
+            padding: 0.8rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #252b38;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-a {
+            font-size: 0.93rem;
+            color: #4a5368;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .card {
+                padding: 1.4rem;
+            }
+
+            .notice-panel {
+                padding: 1.5rem;
+            }
+
+            .faq-mini {
+                padding: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Hero 简明指南 -->
+    <div class="hero">
+        <h1>857直播 · 从简介到使用</h1>
+        <div class="subhead">
+            一个偏重内容查找与直播观看的平台，本文提供基础的了解框架与访问时值得留意的背景信息。
+        </div>
+    </div>
+
+    <!-- 核心亮点卡片区：产品说明式 -->
+    <div class="feature-grid">
+        <div class="card">
+            <h3><span></span>直播内容摘要</h3>
+            <p>平台覆盖多个直播类别，包括娱乐、聊天及部分游戏内容。内容生产者与观看者之间通过实时互动形成社区氛围。无论是浏览热门还是探索小众分区，<a href="https://cn-official-857.com" class="highlight-link">857直播</a>提供了相对直接的信息呈现结构。</p>
+            <p>使用前建议先了解平台的内容规则与推荐逻辑，以便高效找到自己感兴趣的方向。</p>
+        </div>
+        <div class="card">
+            <h3><span></span>实用亮点</h3>
+            <ul>
+                <li>网页端访问无需额外下载，适配主流浏览器。</li>
+                <li>频道分类较细，支持按热度或最新排序。</li>
+                <li>部分直播间开放历史回放功能，可回溯之前内容。</li>
+                <li>界面设计偏简洁，导航层级不多，降低学习成本。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 使用建议 + 访问说明 整合卡片 -->
+    <div class="notice-panel">
+        <h2>使用建议与访问提醒</h2>
+        <div class="notice-content">
+            <div class="notice-item">
+                <div class="label">初次使用时</div>
+                <div class="value">先浏览分区总览，再根据标签筛选；留意平台公告里的临时调整信息。</div>
+            </div>
+            <div class="notice-item">
+                <div class="label">内容甄别</div>
+                <div class="value">直播具有即时性，部分内容未经预先审查，观看时建议结合自身判断。</div>
+            </div>
+            <div class="notice-item">
+                <div class="label">账号与环境</div>
+                <div class="value">部分互动功能需注册，建议使用常用邮箱；公共网络下注意个人隐私保护。</div>
+            </div>
+            <div class="notice-item">
+                <div class="label">平台定位</div>
+                <div class="value"><a href="https://cn-official-857.com" class="highlight-link">857直播</a> 是一个信息聚合型直播站点，非官方媒体，内容来源以用户投稿和主播自播为主。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h2>FAQ 摘要</h2>
+        <div class="faq-item">
+            <div class="faq-q">问：是否需要安装软件才能观看？</div>
+            <div class="faq-a">答：直接在浏览器中打开即可，目前未强制要求安装客户端。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">问：内容是否有地区限制？</div>
+            <div class="faq-a">答：大部分内容可正常访问，少数直播间可能根据主播设置存在地区筛选。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">问：可以回放之前错过的直播吗？</div>
+            <div class="faq-a">答：部分主播保留历史录像，可在频道页或回放列表中查找。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">问：如何获得更多帮助？</div>
+            <div class="faq-a">答：平台内设有常见问题页面，也可通过站内客服渠道留言询问。</div>
+        </div>
+    </div>
+
+    <!-- 结束语占位，无诱导 -->
+    <div style="margin-top: 2.4rem; font-size: 0.85rem; color: #7e8a9e; text-align: center; border-top: 1px solid #e1e6ee; padding-top: 1.6rem;">
+        以上信息仅供了解，具体功能以实际页面为准。
+    </div>
+</div>
+</body>
+</html>
